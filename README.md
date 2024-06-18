@@ -2,7 +2,7 @@
 Local AI Assistant using flask and Ollama model (llama3)
 
 ## Setup
-- First fork the project
+- First fork or clone the project
 ```sh
 git clone https://github.com/cack195/Local-RAG-Chat-Assistant.git
 ```
