@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Local RAG with Ollama and PgVector</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <h1>Local RAG Chat Assistant</h1>
+        <p>
+          built using <a href="https://github.com/phidatahq/phidata">phidata</a>
+        </p>
+        <!--
+            <form method="POST" action="/set_model">
+                <label for="llm_model">Select Model:</label>
+                <select name="llm_model">
+                    <option value="llama3">llama3</option>
+                    <option value="phi3">phi3</option>
+                    <option value="openhermes">openhermes</option>
+                    <option value="llama2">llama2</option>
+                </select>
+                <br>
+                <label for="embeddings_model">Select Embeddings:</label>
+                <select name="embeddings_model">
+                    <option value="nomic-embed-text">nomic-embed-text</option>
+                    <option value="llama3">llama3</option>
+                    <option value="openhermes">openhermes</option>
+                    <option value="phi3">phi3</option>
+                </select>
+                <br>
+                <button type="submit">Set Model</button>
+            </form>
+        -->
+        <hr />
+
+        <form method="POST" action="/upload_url">
+          <label for="input_url">Add URL to Knowledge Base:</label>
+          <input type="text" name="input_url" />
+          <button type="submit">Add URL</button>
+        </form>
+
+        <form method="POST" enctype="multipart/form-data" action="/upload_pdf">
+          <label for="pdf_file">Add a PDF:</label>
+          <input type="file" name="pdf_file" accept="application/pdf" />
+          <button type="submit">Add PDF</button>
+        </form>
+
+        <form method="POST" action="/clear_knowledge_base">
+          <button type="submit">Clear Knowledge Base</button>
+        </form>
+
+        <form method="POST" action="/new_run">
+          <button type="submit">New Run</button>
+        </form>
+      </div>
+
+      <div class="chat-container">
+        <div id="chat_response" class="chat-display"></div>
+        <div id="loading" class="loading-spinner" style="display: none"></div>
+        <form id="chat_form">
+          <label for="prompt">Your Question:</label>
+          <input type="text" id="prompt" name="prompt" />
+          <button type="submit">Ask</button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById("chat_form").onsubmit = async function (event) {
+        event.preventDefault();
+        const prompt = document.getElementById("prompt").value;
+        const responseDiv = document.getElementById("chat_response");
+        const loading = document.getElementById("loading");
+
+        // Show loading spinner
+        loading.style.display = "block";
+
+        const response = await fetch("/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams({ prompt }),
+        });
+
+        // Hide loading spinner
+        loading.style.display = "none";
+
+        const data = await response.json();
+        const userMessage = marked.parseInline(`**You:** ${prompt}`);
+        const assistantMessage = marked.parse(data.response);
+        responseDiv.innerHTML += `<div class="message user"><div class="message-content">${userMessage}</div></div>`;
+        responseDiv.innerHTML += `<div class="message assistant"><div class="message-content">${assistantMessage}</div></div>`;
+        document.getElementById("prompt").value = "";
+        responseDiv.scrollTop = responseDiv.scrollHeight; // Scroll to the bottom
+      };
+    </script>
+  </body>
+</html>
