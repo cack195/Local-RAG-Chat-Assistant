@@ -17,7 +17,7 @@ git clone https://github.com/cack195/Local-RAG-Chat-Assistant.git
     ollama pull nomic-embed-text
     ```
 
-### 2. Set Up a Virtual Environment
+### Set Up a Virtual Environment
 1. Create a Python virtual environment:
 
     ```sh
@@ -30,14 +30,14 @@ git clone https://github.com/cack195/Local-RAG-Chat-Assistant.git
     source venv/bin/activate
     ```
 
-### 3. Install Required Libraries
+### Install Required Libraries
 Install the necessary Python libraries:
 
 ```sh
 pip install -r requirements.txt
 ```
 
-### 4. Start PgVector
+### Start PgVector
 Ensure [Docker Desktop](https://docs.docker.com/get-docker/) is installed first.
 - Start PgVector using Docker:
 ```sh
@@ -51,7 +51,7 @@ docker run -d \
   --name pgvector \
   phidata/pgvector:16
 ```
-### 5. launch the Application
+### launch the Application
 - Run the following command
 ```sh
 python3 app.py
