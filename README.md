@@ -7,9 +7,9 @@ Local AI Assistant using Ollama model (llama3)
 git clone https://github.com/cack195/Local-RAG-Chat-Assistant.git
 ```
 
-### 1. Install Ollama and Download Models
-1. Follow the [installation guide for Ollama](https://github.com/ollama/ollama?tab=readme-ov-file#macos).
-2. Next, download the language models (LLMs) you plan to use:
+### Install Ollama and Download Models
+- Follow the [installation guide for Ollama](https://github.com/ollama/ollama?tab=readme-ov-file#macos).
+- Next, download the language models (LLMs) you plan to use:
 
     ```sh
     ollama pull phi3
@@ -18,13 +18,13 @@ git clone https://github.com/cack195/Local-RAG-Chat-Assistant.git
     ```
 
 ### Set Up a Virtual Environment
-1. Create a Python virtual environment:
+- Create a Python virtual environment:
 
     ```sh
     python3 -m venv venv
     ```
 
-2. Activate the virtual environment:
+- Activate the virtual environment:
 
     ```sh
     source venv/bin/activate
