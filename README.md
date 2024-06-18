@@ -1,5 +1,5 @@
 # Local-RAG-Chat-Assistant
-Local AI Assistant using Ollama model (llama3)
+Local AI Assistant using flask and Ollama model (llama3)
 
 ## Setup
 - First fork the project
