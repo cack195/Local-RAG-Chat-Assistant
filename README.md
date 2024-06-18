@@ -2,7 +2,10 @@
 Local AI Assistant using Ollama model (llama3)
 
 ## Setup
-So that you know, you may want to fork and clone this repository for your use.
+- First fork the project
+```sh
+git clone https://github.com/cack195/Local-RAG-Chat-Assistant.git
+```
 
 ### 1. Install Ollama and Download Models
 1. Follow the [installation guide for Ollama](https://github.com/ollama/ollama?tab=readme-ov-file#macos).
