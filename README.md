@@ -35,7 +35,7 @@ pip install -r requirements.txt
 ```
 
 ### 4. Start PgVector
-Ensure Docker Desktop is installed first.
+Ensure [Docker Desktop](https://docs.docker.com/get-docker/) is installed first.
 - Start PgVector using Docker:
 ```sh
 docker run -d \
